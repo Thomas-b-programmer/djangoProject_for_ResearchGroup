@@ -1,0 +1,59 @@
+{% extends 'qianduan_layout.html' %}
+{% block content %}
+    {% load static %}
+    <!--content-->
+		<div class="i_content">
+			<div class="adr_wrap">
+				<div class="adr">
+					<span class="adr_link"><a href="/homepage/">首 页</a>&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;资源共享&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;在线资源</span>
+				</div>
+			</div>
+			<div class="c_area">
+				<div class="left_list">
+					<div class="nav_title">资源共享</div>
+					<div class="sidemenu">
+						<ul>
+							<li ><a href="/academic_dissertation/">学术论文</a></li>
+							<li ><a href="/academic_books/">专业书籍</a></li>
+                            <li class="on"><a href="/online_resources/">在线资源</a></li>
+                            <li ><a href="/data/">数据</a></li>
+                            <li ><a href="/code/">代码</a></li>
+						</ul>
+					</div>
+					<div class="contact">
+						<a href="/contact/"><img src="{% static 'images/tel.jpg' %}" /></a>
+					</div>
+				</div>
+				<div class="right_content">
+					<div class="con_title">在线资源</div>
+					<div class="con_box">
+						<ul class="items-list">
+                            {% for obj in queryset %}
+							<li>
+                                {% if forloop.counter  == 1  %}
+                                <span class="c-index c-index-hot1 c-gap-icon-right-small">{{ forloop.counter }}</span>
+                                {% endif %}
+                                {% if forloop.counter  == 2  %}
+                                <span class="c-index c-index-hot2 c-gap-icon-right-small">{{ forloop.counter }}</span>
+                                {% endif %}
+                                {% if forloop.counter  == 3  %}
+                                <span class="c-index c-index-hot3 c-gap-icon-right-small">{{ forloop.counter }}</span>
+                                {% endif %}
+                                {% if forloop.counter  >= 4  %}
+                                <span class="c-index c-gap-icon-right-small">{{ forloop.counter }}</span>
+                                {% endif %}
+                                <a href= "{{ obj.resource_url }}" target="_blank" style="color: #0c3784" >{{ obj.zhanshi_title }}(点击跳转)</a>
+                            </li>
+                            {% endfor %}
+						</ul>
+						<div class="clear"></div>
+						<!-- 分页列表 -->
+                        <ul class="pagination">
+                            {{ page_string }}
+                        </ul>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+{% endblock %}

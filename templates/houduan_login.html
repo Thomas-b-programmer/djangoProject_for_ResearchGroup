@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+<title>Login Form</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
+    <link href="{% static 'css/RG_style1.css' %}" rel='stylesheet' type='text/css' />
+</head>
+<body>
+	<div class="main">
+		<div class="login">
+			<h1>管理系统</h1>
+			<div class="inset">
+                <h2>管理登录</h2>
+				<form method="post" novalidate>
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>用户名</label>
+                        {{ form.username }}
+                        <span style="color: red;">{{ form.username.errors.0 }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label>密码</label>
+                        {{ form.password }}
+                        <span style="color: red;">{{ form.password.errors.0 }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="id_code">图片验证码</label>
+                        <div class="row">
+                            <div class="col-xs-7">
+                                {{ form.code }}
+                                <span style="color: red;">{{ form.code.errors.0 }}</span>
+                            </div>
+                            <div class="col-xs-5">
+                                <img id="image_code" src="/image/code/" style="width: 125px;">
+                            </div>
+                        </div>
+                    </div>
+                    <button>登录</button>
+                </form>
+				</div>
+			</div>
+		<!--//end-main-->
+		</div>
+
+<div class="copy-right">
+	<p>&copy; 2022 Laboratory Back-End Management System</p>
+
+</div>
+<div style="text-align:center;">
+<p>链接：<a href="/homepage/" target="_blank">实验室官网</a></p>
+</div>
+</body>

@@ -1,0 +1,45 @@
+{% extends 'houduan_layout.html' %}
+{% block content %}
+    <div class="container clearfix">
+        <div class="main-wrap">
+
+            <div class="crumb-wrap">
+                <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin/design/">首页</a><span class="crumb-step">&gt;</span><span>添加首页宣传图</span></div>
+            </div>
+            <div class="result-wrap">
+                <div class="result-content">
+                    <form method="post" id="myform" name="myform" enctype="multipart/form-data">
+                        <table class="insert-tab" width="100%">
+                            <tbody>
+                                <tr>
+                                    <th width="120"><i class="require-red">*</i>选着要替换的图片：</th>
+                                    <td>
+                                        <select name="option">
+                                            <option value="">选着要替换的图片</option>
+                                            <option id = 'option' value="banner1.jpg">动态图1</option>
+                                            <option id = 'option' value="banner2.jpg">动态图2</option>
+                                            <option id = 'option' value="banner3.jpg">动态图3</option>
+                                            <option id = 'option' value="banner4.jpg">动态图4</option>
+                                            <option id = 'option' value="banner5.jpg">动态图5</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><i class="require-red">*</i>新闻图(格式限制:1920*650)：</th>
+                                    <td><input name="img" type="file"><!--<input type="submit" onclick="submitForm('/jscss/admin/design/upload')" value="上传图片"/>--></td>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <td>
+                                        <input class="btn btn-primary btn6 mr10" value="提交" type="submit">
+                                        <input class="btn btn6" onClick="history.go(-1)" value="返回" type="button">
+                                    </td>
+                                </tr>
+                            </tbody></table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

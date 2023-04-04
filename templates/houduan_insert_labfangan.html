@@ -1,0 +1,36 @@
+{% extends 'houduan_layout.html' %}
+{% block content %}
+     <div class="main-wrap1">
+
+        <div class="crumb-wrap">
+            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin/design/">首页</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="/jscss/admin/design/">实验室</a><span class="crumb-step">&gt;</span><span>培养方案</span></div>
+        </div>
+        <div class="result-wrap">
+            <div class="result-content">
+                <form method="post" >
+                    <table class="insert-tab" width="100%">
+                        <tbody>
+                            <tr>
+                                {% for obj in data_content %}
+                                <th><i class="require-red">*</i>内容：</th>
+                                <td><textarea name="content" class="common-textarea" id="content" cols="15" rows="25" style="width: 90%;">{{ obj.fangan }}</textarea></td>
+                                {% empty %}
+                                    <th><i class="require-red">*</i>内容：</th>
+                                    <td><textarea name="content1" class="common-textarea" id="content1" cols="25" rows="15" style="width: 90%;"></textarea></td>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <input class="btn btn-primary btn6 mr10" value="提交" type="submit">
+                                    <input class="btn btn6" onClick="history.go(-1)" value="返回" type="button">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

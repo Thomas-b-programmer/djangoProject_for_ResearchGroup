@@ -1,0 +1,45 @@
+{% extends 'houduan_layout.html' %}
+{% block content %}
+    <div class="container clearfix">
+        <div class="main-wrap">
+
+            <div class="crumb-wrap">
+                <div class="crumb-list"><i class="icon-font"></i><a href="">首页</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="/manage_announcement/">公告</a><span class="crumb-step">&gt;</span><a class="crumb-name" >添加公告</a></div>
+            </div>
+            <div class="result-wrap">
+                <div class="result-content">
+                    <form method="post" id="myform" name="myform" enctype="multipart/form-data">
+                        <table class="insert-tab" width="100%">
+                            <tbody>
+                                <tr>
+                                    <th><i class="require-red">*</i>发布日期：</th>
+                                    <td>
+                                        <input class="common-text required" name="date" size="30" value="" type="date">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><i class="require-red">*</i>前端展示标题：</th>
+                                    <td>
+                                        <input class="common-text required" name="zhanshi_title" size="50" value="" type="text">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><i class="require-red">*</i>会议内容：</th>
+                                    <td><textarea name="content" class="common-textarea" cols="30" style="width: 98%;" rows="18"></textarea></td>
+
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <td>
+                                        <input class="btn btn-primary btn6 mr10" value="提交" type="submit">
+                                        <input class="btn btn6" onClick="history.go(-1)" value="返回" type="button">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

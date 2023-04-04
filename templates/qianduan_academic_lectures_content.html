@@ -1,0 +1,49 @@
+{% extends 'qianduan_layout.html' %}
+{% block content %}
+    {% load static %}
+    <!--content-->
+		<div class="i_content">
+			<div class="adr_wrap">
+				<div class="adr">
+					<span class="adr_link"><a href="/homepage/">首 页</a>&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;学术讲座</span>
+				</div>
+			</div>
+			<div class="c_area">
+				<div class="left_list">
+					<div class="nav_title">首页</div>
+					<div class="sidemenu">
+						<ul>
+                            <li ><a href="/news/">新闻</a></li>
+                            <li ><a href="/announcement/">实验室公告</a></li>
+                            <li class="on"><a href="/academic_lectures/">学术讲座</a></li>
+						</ul>
+					</div>
+					<div class="contact">
+						<a href="/contact/"><img src="{% static 'images/tel.jpg' %}" /></a>
+					</div>
+				</div>
+				<div class="right_content">
+                    {% for obj in queryset %}
+					<div class="con_title">{{ obj.zhanshi_title }}</div>
+					<div class="con_box">
+                        <br/>
+						<p>主题：{{ obj.theme }}</p>
+						<p>主讲人：{{ obj.speaker }}</p>
+						<p>时间：{{ obj.time }}</p>
+						<p>地点：{{ obj.place }}</p>
+						<p>主办单位：{{ obj.organizer }}</p>
+                        <br/>
+                        <br/>
+                        <p>欢迎广大师生前来参加！</p>
+					</div>
+                    {% endfor %}
+				</div>
+                <div class="clear">
+                </div>
+			</div>
+		</div>
+{% endblock %}
+
+
+
+

@@ -1,0 +1,66 @@
+{% extends 'qianduan_layout.html' %}
+{% block content %}
+    {% load static %}
+    <!--content-->
+		<div class="i_content">
+			<div class="adr_wrap">
+				<div class="adr">
+					<span class="adr_link"><a href="/homepage/">首 页</a>&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;资源共享&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;代码</span>
+				</div>
+			</div>
+			<div class="c_area">
+				<div class="left_list">
+					<div class="nav_title">资源共享</div>
+					<div class="sidemenu">
+						<ul>
+							<li ><a href="/academic_dissertation/">学术论文</a></li>
+							<li ><a href="/academic_books/">专业书籍</a></li>
+                            <li ><a href="/online_resources/">在线资源</a></li>
+                            <li ><a href="/data/">数据</a></li>
+                            <li class="on"><a href="/code/">代码</a></li>
+						</ul>
+					</div>
+					<div class="contact">
+						<a href="/contact/"><img src="{% static 'images/tel.jpg' %}" /></a>
+					</div>
+				</div>
+				<div class="right_content">
+                    {% for obj in queryset %}
+					<div class="con_title">代码</div>
+					<div class="con_box">
+                        {{ obj.code_introduction|safe }}
+                        <hr size=1 color=redwidth=300>
+                        <img class="img_for_code" src="{% static 'images/下载图标.png' %}"><a href="{% url 'download_for_code' %}?id={{ obj.id }}">点击下载</a><span>(耐心等待)</span><span>：{{ obj.code_title }}</span>
+					</div>
+                    {% endfor %}
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+    {% block js %}
+    <script src="{% static 'js/streamSaver.js' %}" type="text/javascript">
+                fetch(url, {
+                    method: 'GET',
+                    cache: 'no-cache'
+                }).then(res=> {
+                    const fileStream = streamSaver.createWriteStream(name+'.mp4', {
+                        size : res.headers.get("content-length")
+                    })
+                    const readableStream = res.body
+                    // more optimized
+                    if (window.WritableStream && readableStream.pipeTo) {
+                        return readableStream.pipeTo(fileStream)
+                            .then(() => console.log('done writing'))
+                    }
+                    window.writer = fileStream.getWriter()
+
+                    const reader = res.body.getReader()
+                    const pump = () => reader.read()
+                        .then(res => res.done
+                            ? window.writer.close()
+                            : window.writer.write(res.value).then(pump))
+                    pump()
+                })
+    </script>
+    {% endblock %}
+{% endblock %}

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+{% csrf_token %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实验室网站管理系统</title>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/RG_common.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/RG_main.css' %}"/>
+    <style>
+        .navbar {
+            border-radius: 0;
+        }
+    </style>
+    {% block css %}{% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"> 实验室网站管理系统 </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">首页 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/manage_publicity/">动态宣传图管理</a></li>
+                        <li><a href="/manage_news/">实验室新闻管理</a></li>
+                        <li><a href="/manage_announcement/">实验室公告管理</a></li>
+                        <li><a href="/manage_academic_lectures/">实验室学术讲座</a></li>
+                        <li><a href="/manage_friendly_link/">首页友情链接</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">实验室 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/insert_jianjie/">实验室简介管理</a></li>
+                        <li><a href="/insert_labfangan/">培养方案管理</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">师资与科研 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/manage_teacher/">师资力量管理</a></li>
+                        <li><a href="/manage_technology/">科研成果管理</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">科研学子 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/manage_student/">优秀学子管理</a></li>
+                        <li><a href="/manage_zhuanye_achievement/">专业成果管理</a></li>
+                        <li><a href="/manage_other_achievement/">其他成果管理</a></li>
+                        <li><a href="/manage_daily_activities/">日常活动管理</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">会议 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/manage_conference/">会议管理</a></li>
+                        <li><a href="/manage_conference_report/">会议报告管理</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">资源共享 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/manage_academic_dissertation/">学术论文管理</a></li>
+                        <li><a href="/manage_academic_books/">专业书籍管理</a></li>
+                        <li><a href="/manage_online_resources/">在线资源管理</a></li>
+                        <li><a href="/manage_data/">数据管理</a></li>
+                        <li><a href="/manage_code/">代码管理</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="/homepage/" target="_blank">  | 点击跳转前端网站 |</a>
+                </li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">管理员 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">个人资料</a></li>
+                        <li><a href="#">我的信息</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/logout/">注销</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<script src="{% static 'tinymce/tinymce.min.js' %}"  ></script>
+<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'plugins/bootstrap-3.4.1/js/bootstrap.min.js' %}"></script>
+<script>
+    tinymce.init({
+        width:950,
+        height:800,
+        language:'zh_CN',
+        selector: 'textarea',
+        plugins:['anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount ' ,
+            'checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen ' ,
+            'powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss','advlist autolink lists link image charmap print preview anchor','searchreplace visualblocks code fullscreen',
+        'insertdatetime media table paste code help wordcount'],
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough |  formatselect | link image media table mergetags | ' +
+            'addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | ' +
+            'emoticons charmap | removeformat'+'code image | '+'removeformat | help',
+         font_formats: "微软雅黑='微软雅黑';宋体='宋体';黑体='黑体';仿宋='仿宋';楷体='楷体';隶书='隶书';幼圆='幼圆';Andale Mono=andale mono,times;" +
+             "Arial=arial,helvetica,sans-serif;Arial Black=arial black,avant garde;Book Antiqua=book antiqua," +
+             "palatino;Comic Sans MS=comic sans ms,sans-serif;Courier New=courier new,courier;Georgia=georgia,palatino;Helvetica=helvetica;" +
+             "Impact=impact,chicago;Symbol=symbol;Tahoma=tahoma,arial,helvetica,sans-serif;Terminal=terminal,monaco;" +
+             "Times New Roman=times new roman,times;Trebuchet MS=trebuchet ms,geneva;Verdana=verdana,geneva;Webdings=webdings;Wingdings=wingdings",
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+        paste_data_images: true,
+        automatic_uploads: true, // 图片自动上传
+        images_upload_url: '/upload_image/', // Django路由中图片上传地址
+        mergetags_list: [
+        { value: 'First.Name', title: 'First Name' },
+        { value: 'Email', title: 'Email' },
+      ]
+    });
+</script>
+
+<div>
+    {% block content %}{% endblock %}
+</div>
+
+<!-- 删除（对话框） -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+
+            <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                <h4>是否确定删除？</h4>
+                <p style="margin: 10px 0;"> 删除后，所有关联的相关数据都会被删除。</p>
+                <p style="text-align: right;">
+                    <button id="btnConfirmDelete" type="button" class="btn btn-danger">确 定</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取 消</button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+{% extends 'qianduan_layout.html' %}
+{% block content %}
+    {% load static %}
+    <!--content-->
+		<div class="i_content">
+			<div class="adr_wrap">
+				<div class="adr">
+					<span class="adr_link"><a href="/homepage/">首 页</a>&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;师资与科研&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;师资力量</span>
+				</div>
+			</div>
+			<div class="c_area">
+				<div class="left_list">
+					<div class="nav_title">师资与科研</div>
+					<div class="sidemenu">
+						<ul>
+							<li class="on"><a href="/teacher/">师资力量</a></li>
+							<li><a href="/technology/">科研成果</a></li>
+						</ul>
+					</div>
+					<div class="contact">
+						<a href="/contact/"><img src="{% static 'images/tel.jpg' %}" /></a>
+					</div>
+				</div>
+				<div class="right_content">
+					<div class="con_title">师资力量</div>
+					<div class="con_box">
+                        <ul class="img-list">
+                            {% for obj in queryset %}
+                                <li>
+								    <a href="{% url 'teacher_content' %}?id={{ obj.id }}"><img src="{% static obj.photo_url %} "  /><b>{{ obj.title }}</b></a>
+							    </li>
+                            {% endfor %}
+						</ul>
+                        <div class="clear"></div>
+						<!-- 分页列表 -->
+                        <div>
+                            <ul class="pagination">
+                                {{ page_string }}
+                            </ul>
+                        </div>
+                    </div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+{% endblock %}
+

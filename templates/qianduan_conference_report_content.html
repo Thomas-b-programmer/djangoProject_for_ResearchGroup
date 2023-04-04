@@ -1,0 +1,35 @@
+{% extends 'qianduan_layout.html' %}
+{% block content %}
+    {% load static %}
+    <!--content-->
+		<div class="i_content">
+			<div class="adr_wrap">
+				<div class="adr">
+					<span class="adr_link"><a href="/homepage/">首 页</a>&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;会议</span>
+				</div>
+			</div>
+			<div class="c_area">
+				<div class="left_list">
+					<div class="nav_title">实验室会议</div>
+					<div class="sidemenu">
+						<ul>
+							<li ><a href="/conference/">会议</a></li>
+							<li class="on"><a href="/conference_report/">会议报告</a></li>
+						</ul>
+					</div>
+					<div class="contact">
+						<a href="/contact/"><img src="{% static 'images/tel.jpg' %}" /></a>
+					</div>
+				</div>
+				<div class="right_content">
+                    {% for obj in queryset %}
+					<div class="con_title">会议报告</div>
+                        <form class="wenzhang_form">
+                            <p>{{ obj.conference_report_content|safe }}</p>
+                        </form>
+                    {% endfor %}
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+{% endblock %}

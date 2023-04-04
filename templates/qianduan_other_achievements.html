@@ -1,0 +1,64 @@
+{% extends 'qianduan_layout.html' %}
+{% block content %}
+    {% load static %}
+    <!--content-->
+		<div class="i_content">
+			<div class="adr_wrap">
+				<div class="adr">
+					<span class="adr_link"><a href="/homepage/">首 页</a>&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;科研学子&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;学习成果&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;其他成果</span>
+				</div>
+			</div>
+			<div class="c_area">
+				<div class="left_list">
+					<div class="nav_title">科研学子</div>
+					<div class="sidemenu">
+						<ul>
+                            <li><a href="/student/">优秀毕业生</a></li>
+							<li>
+								<h3 class="on"><em></em>学习成果</h3>
+								<ul>
+									<li><a href="/zhuanye_achievements/">专业学习</a></li>
+									<li class="on"><a href="/other_achievements/">其他成果</a></li>
+								</ul>
+							</li>
+							<li><a href="/daily_activities/">日常活动</a></li>
+
+						</ul>
+					</div>
+					<div class="contact">
+						<a href="/contact/"><img src="{% static 'images/tel.jpg' %}" /></a>
+					</div>
+				</div>
+				<div class="right_content">
+					<div class="con_title">其他成果</div>
+					<div class="con_box">
+						<ul class="items-list">
+                            {% for obj in queryset %}
+							<li>
+                                {% if forloop.counter  == 1  %}
+                                <span class="c-index c-index-hot1 c-gap-icon-right-small">{{ forloop.counter }}</span>
+                                {% endif %}
+                                {% if forloop.counter  == 2  %}
+                                <span class="c-index c-index-hot2 c-gap-icon-right-small">{{ forloop.counter }}</span>
+                                {% endif %}
+                                {% if forloop.counter  == 3  %}
+                                <span class="c-index c-index-hot3 c-gap-icon-right-small">{{ forloop.counter }}</span>
+                                {% endif %}
+                                {% if forloop.counter  >= 4  %}
+                                <span class="c-index c-gap-icon-right-small">{{ forloop.counter }}</span>
+                                {% endif %}
+                                <a href="{% url 'other_achievements_content' %}?id={{ obj.id }}">{{ obj.zhanshi_title }}</a><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ obj.publisher }}</span><span class="date">{{ obj.time }}</span>
+                            </li>
+                            {% endfor %}
+						</ul>
+						<div class="clear"></div>
+						<!-- 分页列表 -->
+                        <ul class="pagination">
+                            {{ page_string }}
+                        </ul>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+{% endblock %}

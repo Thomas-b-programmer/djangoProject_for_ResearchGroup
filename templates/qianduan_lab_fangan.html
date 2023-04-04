@@ -1,0 +1,133 @@
+{% extends 'qianduan_layout.html' %}
+{% block content %}
+    {% load static %}
+    <!--content-->
+		<div class="i_content">
+			<div class="adr_wrap">
+				<div class="adr">
+					<span class="adr_link"><a href="/homepage/">首 页</a>&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;实验室&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;培养方案</span>
+				</div>
+			</div>
+			<div class="c_area">
+				<div class="left_list">
+					<div class="nav_title">智能优化与信息处理实验室</div>
+					<div class="sidemenu">
+						<ul>
+							<li ><a href="/lab_jianjie/">实验室简介</a></li>
+							<li class="on"><a href="/lab_fangan/">培养方案</a></li>
+						</ul>
+					</div>
+					<div class="contact">
+						<a href="/contact/"><img src="{% static 'images/tel.jpg' %}" /></a>
+					</div>
+				</div>
+				<div class="right_content">
+                    <div class="con_title">培养方案</div>
+                    <form class="wenzhang_form">
+                        {% for obj in data_content %}
+                                <P>{{ obj.fangan|safe }}</P>
+                        {% endfor %}
+                    </form>
+					</div>
+				    </div>
+				<div class="clear"></div>
+			</div>
+		</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

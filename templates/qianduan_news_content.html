@@ -1,0 +1,76 @@
+{% extends 'qianduan_layout.html' %}
+{% block content %}
+    {% load static %}
+    <!--content-->
+		<div class="i_content">
+			<div class="adr_wrap">
+				<div class="adr">
+					<span class="adr_link"><a href="/homepage/">首 页</a>&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;新闻</span>
+				</div>
+			</div>
+			<div class="c_area">
+				<div class="left_list">
+					<div class="nav_title">首页</div>
+					<div class="sidemenu">
+						<ul>
+                            <li  class="on"><a href="/news/">新闻</a></li>
+                            <li><a href="/announcement/">实验室公告</a></li>
+                            <li ><a href="/academic_lectures/">学术讲座</a></li>
+						</ul>
+					</div>
+					<div class="contact">
+						<a href="/contact/"><img src="{% static 'images/tel.jpg' %}" /></a>
+					</div>
+				</div>
+				<div class="right_content">
+                    {% for obj in queryset %}
+                        <form class="wenzhang_form">
+                            <p>&nbsp;&nbsp;{{ obj.news_introduction|safe }}</p>
+                        </form>
+                    {% endfor %}
+					</div>
+				</div>
+                <div class="clear">
+                </div>
+			</div>
+		</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

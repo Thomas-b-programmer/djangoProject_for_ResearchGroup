@@ -1,0 +1,152 @@
+{% extends 'qianduan_layout.html' %}
+{% block content %}
+    {% load static %}
+    <!--banner-->
+		<div class="banner">
+			<div class="bd">
+				<ul>
+					<li class="first"><a href="javascript:void(0);"></a></li>
+					<li class="second"><a href="javascript:void(0);"></a></li>
+					<li class="third"><a href="javascript:void(0);"></a></li>
+                    <li class="fourth"><a href="javascript:void(0);"></a></li>
+					<li class="fifth"><a href="javascript:void(0);"></a></li>
+				</ul>
+			</div>
+			<div class="hd"><ul></ul></div>
+		</div>
+		<!--content-->
+		<div class="content">
+			<div class="left_tab">
+				<div class="hd">
+					<ul><li class="first">实验室简介</li><li class="second">实验室会议</li><li class="third">实验室新闻</li><li class="fourth">实验室公告</li><li class="fith">学术讲座</li></ul>
+				</div>
+				<div class="bd">
+					<div class="box">
+						<a href="/lab_jianjie/" class="more">MORE+</a>
+                        <div class="con_box" >
+                            {% for obj in data_jianjie %}
+                                <Pre >{{ obj.content|safe }}</Pre>
+                            {% endfor %}
+                        </div>
+					</div>
+					<div class="box">
+						<a href="/conference/" class="more">MORE+</a>
+                        <div class="con_box" >
+                        <ul class="items-list">
+                            {% for obj in data_conference %}
+                                {% if forloop.counter  == 1  %}
+                                <span class="c-index c-index-hot1 c-gap-icon-right-small" >{{ forloop.counter }}</span>
+                                {% endif %}
+                                {% if forloop.counter  == 2  %}
+                                <span class="c-index c-index-hot2 c-gap-icon-right-small">{{ forloop.counter }}</span>
+                                {% endif %}
+                                {% if forloop.counter  == 3  %}
+                                <span class="c-index c-index-hot3 c-gap-icon-right-small">{{ forloop.counter }}</span>
+                                {% endif %}
+                                {% if forloop.counter  >= 4  %}
+                                <span class="c-index c-gap-icon-right-small">{{ forloop.counter }}</span>
+                                {% endif %}
+                                <a href="{% url 'conference_content' %}?id={{ obj.id }}">&nbsp;&nbsp;&nbsp;&nbsp;{{ obj.zhanshi_title }}</a><br/>
+                                <img class="teding-img" src="{% static 'images/naozhong.png' %} ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ obj.time }}<br/>
+                                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-----------------------------------</span><br/>
+                            {% endfor %}
+                        </ul>
+                        </div>
+					</div>
+					<div class="box">
+						<a href="/news/" class="more1">MORE+</a>
+						<ul class="clearfix">
+                            {% for obj in data_news %}
+                                <li><a href="{% url 'news_content' %}?id={{ obj.id }}" ><img src="{% static obj.photo_url %}" /><h4>{{ obj.zhanshi_title }}</h4><span class="date">{{ obj.time }}</span></a></li>
+                            {% endfor %}
+                        </ul>
+					</div>
+                    <div class="box">
+						<a href="/announcement/" class="more">MORE+</a>
+                        <div class="con_box" >
+                        <ul class="items-list">
+                            {% for obj in data_announcement %}
+                                {% if forloop.counter  == 1  %}
+                                <span class="c-index c-index-hot1 c-gap-icon-right-small" >{{ forloop.counter }}</span>
+                                {% endif %}
+                                {% if forloop.counter  == 2  %}
+                                <span class="c-index c-index-hot2 c-gap-icon-right-small">{{ forloop.counter }}</span>
+                                {% endif %}
+                                {% if forloop.counter  == 3  %}
+                                <span class="c-index c-index-hot3 c-gap-icon-right-small">{{ forloop.counter }}</span>
+                                {% endif %}
+                                {% if forloop.counter  >= 4  %}
+                                <span class="c-index c-gap-icon-right-small">{{ forloop.counter }}</span>
+                                {% endif %}
+                                <a href="{% url 'announcement_content' %}?id={{ obj.id }}">&nbsp;&nbsp;&nbsp;&nbsp;{{ obj.zhanshi_title }}</a><br/>
+                                <img class="teding-img" src="{% static 'images/naozhong.png' %} ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ obj.time }}<br/>
+                                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-----------------------------------</span><br/>
+                            {% endfor %}
+                        </ul>
+                        </div>
+					</div>
+                    <div class="box">
+						<a href="/academic_lectures/" class="more">MORE+</a>
+                        <div class="con_box" >
+                        <ul class="items-list">
+                            {% for obj in data_academic_lectures %}
+                                {% if forloop.counter  == 1  %}
+                                <span class="c-index c-index-hot1 c-gap-icon-right-small" >{{ forloop.counter }}</span>
+                                {% endif %}
+                                {% if forloop.counter  == 2  %}
+                                <span class="c-index c-index-hot2 c-gap-icon-right-small">{{ forloop.counter }}</span>
+                                {% endif %}
+                                {% if forloop.counter  == 3  %}
+                                <span class="c-index c-index-hot3 c-gap-icon-right-small">{{ forloop.counter }}</span>
+                                {% endif %}
+                                {% if forloop.counter  >= 4  %}
+                                <span class="c-index c-gap-icon-right-small">{{ forloop.counter }}</span>
+                                {% endif %}
+                                <a href="{% url 'academic_lectures_content' %}?id={{ obj.id }}">&nbsp;&nbsp;&nbsp;&nbsp;{{ obj.zhanshi_title }}</a><br/>
+                                <img class="teding-img" src="{% static 'images/naozhong.png' %} ">&nbsp;&nbsp;&nbsp;&nbsp;{{ obj.time }}<br/>
+                                <img class="teding-img" src="{% static 'images/place1.jpg' %} ">&nbsp;&nbsp;&nbsp;{{ obj.place }}<br/>
+                                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-----------------------------------</span><br/>
+                            {% endfor %}
+                        </ul>
+                        </div>
+					</div>
+				</div>
+			</div>
+			<div class="right_box">
+				<!--notice-->
+				<div class="notice">
+					<div class="n_title">
+						<b>最新通知</b>
+						<a href="/news/">MORE+</a>
+					</div>
+					<div class="bd">
+						<ul class="infoList">
+                            {% for obj in data_notice_announcement %}
+                                <li><a href="{% url 'announcement_content' %}?id={{ obj.id }}">{{ obj.zhanshi_title }}</a><span class="date">{{ obj.time }}</span></li>
+                            {% endfor %}
+                            {% for obj in data_notice_academic_lectures %}
+                                <li><a href="{% url 'academic_lectures_content' %}?id={{ obj.id }}">{{ obj.zhanshi_title }}</a><span class="date">{{ obj.time }}</span></li>
+                            {% endfor %}
+                            {% for obj in data_notice_news %}
+                                <li><a href="{% url 'news_content' %}?id={{ obj.id }}">{{ obj.zhanshi_title }}</a><span class="date">{{ obj.time }}</span></li>
+                            {% endfor %}
+                            {% for obj in data_notice_conference %}
+                                <li><a href="{% url 'conference_content' %}?id={{ obj.id }}">{{ obj.zhanshi_title }}</a><span class="date">{{ obj.time }}</span></li>
+                            {% endfor %}
+						</ul>
+					</div>
+				</div>
+				<!--code-->
+				<div class="code">
+					<img src="{% static 'images/er.jpg' %}" />
+				</div>
+			</div>
+			<div class="clear"></div>
+			<div class="friend_link">
+                <b>友情链接：</b>
+                {% for obj in data_friendly_link %}
+				<a href="{{ obj.website }}" target="_blank">{{ obj.name }}</a>
+			    {% endfor %}
+            </div>
+		</div>
+{% endblock %}

@@ -1,0 +1,122 @@
+{% extends 'houduan_layout.html' %}
+
+{% block content %}
+    <div class="container">
+        <div style="margin-bottom: 10px">
+            <input type="button" value="添加学生" onclick="window.open('/insert_student/')"  class="btn btn-success" >
+        </div>
+
+        <!-- 订单列表 -->
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                学子列表
+            </div>
+
+            <!-- Table -->
+            <table class="table table-bordered">
+                <thead>
+                        <tr>
+                            <th >学号</th>
+                            <th>姓名</th>
+                            <th>学院</th>
+                            <th>出生年份</th>
+                        </tr>
+                </thead>
+                <tbody>
+                {% for obj in queryset %}
+                    <tr uid="学生列表">
+                        <th>{{ obj.student_ID }}</th>
+                        <td>{{ obj.name }}</td>
+                        <td>{{ obj.academy }}</td>
+                        <td>{{ obj.year }}年</td>
+                        <td>
+                            <input uid="{{ obj.id }}" onclick="window.open('/edit_student/?uid={{ obj.id }}')" class="btn btn-primary btn3 mr10" value="编辑" type="submit">
+                            <input uid="{{ obj.id }}" class="btn btn-danger btn-xs btn-delete" type="button" value="删除">
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 分页列表 -->
+        <ul class="pagination">
+            {{ page_string }}
+        </ul>
+    </div>
+
+    <!-- 删除（对话框） -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+
+            <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                <h4>是否确定删除？</h4>
+                <p style="margin: 10px 0;"> 删除后，所有关联的相关数据都会被删除。</p>
+                <p style="text-align: right;">
+                    <button id="btnConfirmDelete" type="button" class="btn btn-danger">确 定</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取 消</button>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    {% block js %}
+
+    <script type="text/javascript">
+        var DELETE_ID;
+        var EDIT_ID;
+
+        $(function () {
+            bindBtnDeleteEvent();
+            bindBtnConfirmDeleteEvent();
+        })
+
+
+        function bindBtnDeleteEvent() {
+            $(".btn-delete").click(function () {
+                // alert("点击了删除");
+                // 显示删除对话框
+                $("#deleteModal").modal('show');
+
+                // 获取当前行的ID并赋值给全部变量。
+                DELETE_ID = $(this).attr("uid");
+            });
+        }
+
+        function bindBtnConfirmDeleteEvent() {
+            $("#btnConfirmDelete").click(function () {
+                $.ajax({
+                    url: "/order/delete_student/",  //    => /order/delete/?uid=123
+                    type: "GET",
+                    data: {
+                        uid: DELETE_ID
+                    },
+                    dataType: "JSON",
+                    success: function (res) {
+                        if (res.status) {
+                            // 隐藏删除框
+                            // $("#deleteModal").modal('hide');
+                            // 在页面上将当前一行数据删除（js）
+                            // $("tr[uid='" + DELETE_ID + "']").remove();
+                            // 要删除的ID制空
+                            // DELETE_ID = 0;
+                            // 简单的思路：
+                            location.reload();
+                        } else {
+                            // 删除失败
+                            alert(res.error);
+                        }
+                    }
+                })
+            });
+        }
+
+    </script>
+{% endblock %}
+{% endblock %}
+
+
+

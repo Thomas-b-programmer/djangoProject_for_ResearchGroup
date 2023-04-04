@@ -1,0 +1,46 @@
+{% extends 'houduan_layout.html' %}
+{% block content %}
+    <div class="container clearfix">
+        <div class="main-wrap">
+
+            <div class="crumb-wrap">
+                <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin/design/">首页</a><span class="crumb-step">&gt;<span>添加仪器展示</span></div>
+            </div>
+            <div class="result-wrap">
+                <div class="result-content">
+                    <form method="post" id="myform" name="myform" enctype="multipart/form-data">
+                        <table class="insert-tab" width="100%">
+                            <tbody>
+                                <tr>
+                                    <th><i class="require-red">*</i>当前日期：</th>
+                                    <td>
+                                        <input class="common-text required" name="nian" size="5" value="" type="text">&nbsp;&nbsp;年&nbsp;&nbsp;
+                                        <input class="common-text required" name="yue" size="3" value="" type="text">&nbsp;&nbsp;月&nbsp;&nbsp;
+                                        <input class="common-text required" name="ri" size="3" value="" type="text">&nbsp;&nbsp;日&nbsp;&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><i class="require-red">*</i>前端展示标题：</th>
+                                    <td>
+                                        <input class="common-text required" name="zhanshi_title" size="50" value="" type="text">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><i class="require-red">*</i>实验室图片(格式限制:228*175)：</th>
+                                    <td><input name="img" type="file"><!--<input type="submit" onclick="submitForm('/jscss/admin/design/upload')" value="上传图片"/>--></td>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <td>
+                                        <input class="btn btn-primary btn6 mr10" value="提交" type="submit">
+                                        <input class="btn btn6" onClick="history.go(-1)" value="返回" type="button">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

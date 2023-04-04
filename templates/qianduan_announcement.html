@@ -1,0 +1,57 @@
+{% extends 'qianduan_layout.html' %}
+{% block content %}
+    {% load static %}
+    <!--content-->
+		<div class="i_content">
+			<div class="adr_wrap">
+				<div class="adr">
+					<span class="adr_link"><a href="/homepage/">首 页</a>&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;实验室公告</span>
+				</div>
+			</div>
+			<div class="c_area">
+				<div class="left_list">
+					<div class="nav_title">首页</div>
+					<div class="sidemenu">
+						<ul>
+							<li ><a href="/news/">新闻</a></li>
+                            <li class="on"><a href="/announcement/">实验室公告</a></li>
+                            <li class><a href="/academic_lectures/">学术讲座</a></li>
+						</ul>
+					</div>
+					<div class="contact">
+						<a href="/contact/"><img src="{% static 'images/tel.jpg' %}" /></a>
+					</div>
+				</div>
+				<div class="right_content">
+					<div class="con_title">实验室公告</div>
+					<div class="con_box">
+						<ul class="items-list">
+                            {% for obj in queryset %}
+							<li>
+                                {% if forloop.counter  == 1  %}
+                                <span class="c-index c-index-hot1 c-gap-icon-right-small">{{ forloop.counter }}</span>
+                                {% endif %}
+                                {% if forloop.counter  == 2  %}
+                                <span class="c-index c-index-hot2 c-gap-icon-right-small">{{ forloop.counter }}</span>
+                                {% endif %}
+                                {% if forloop.counter  == 3  %}
+                                <span class="c-index c-index-hot3 c-gap-icon-right-small">{{ forloop.counter }}</span>
+                                {% endif %}
+                                {% if forloop.counter  >= 4  %}
+                                <span class="c-index c-gap-icon-right-small">{{ forloop.counter }}</span>
+                                {% endif %}
+                                <a href="{% url 'announcement_content' %}?id={{ obj.id }}">{{ obj.zhanshi_title }}</a><span class="date">{{ obj.time }}</span>
+                            </li>
+                            {% endfor %}
+						</ul>
+						<div class="clear"></div>
+						<!-- 分页列表 -->
+                        <ul class="pagination">
+                            {{ page_string }}
+                        </ul>
+					</div>
+				    </div>
+				<div class="clear"></div>
+			</div>
+		</div>
+{% endblock %}
