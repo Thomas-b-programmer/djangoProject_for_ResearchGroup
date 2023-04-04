@@ -1,0 +1,2 @@
+# djangoProject_for_ResearchGroup
+用django编写的课程组网站项目，如有问题欢迎留言
